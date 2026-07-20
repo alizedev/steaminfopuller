@@ -1,23 +1,243 @@
-﻿<Application
-    x:Class="SteamInfoPuller.App"
-    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
-    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+﻿<Window x:Class="SteamInfoPuller.GUI.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        Title="CS2 Profile Analyzer"
+        Width="1200"
+        Height="750"
+        Background="#0B1118">
+
+    <Grid Margin="25">
+
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
 
 
-    <Application.Resources>
+        <!-- HEADER -->
+        <Border Background="#171D25"
+                CornerRadius="15"
+                Padding="20">
 
-        <ResourceDictionary>
+            <StackPanel Orientation="Horizontal">
 
-            <ResourceDictionary.MergedDictionaries>
+                <TextBlock Text="CS2 Profile Analyzer"
+                           Foreground="White"
+                           FontSize="30"
+                           FontWeight="Bold"/>
 
-                <ResourceDictionary
-                    Source="Styles/SteamTheme.xaml"/>
+                <TextBlock Text=" SteamInfoPuller"
+                           Foreground="#66C0F4"
+                           FontSize="22"
+                           Margin="15,5,0,0"/>
 
-            </ResourceDictionary.MergedDictionaries>
+            </StackPanel>
 
-        </ResourceDictionary>
-
-    </Application.Resources>
+        </Border>
 
 
-</Application>
+
+        <!-- CONTENT -->
+        <Grid Grid.Row="1"
+              Margin="0,25,0,0">
+
+
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="350"/>
+                <ColumnDefinition Width="*"/>
+            </Grid.ColumnDefinitions>
+
+
+
+            <!-- LEFT PROFILE CARD -->
+
+            <Border Background="#171D25"
+                    CornerRadius="15"
+                    Padding="20">
+
+                <StackPanel>
+
+
+                    <TextBlock Text="Steam Profil"
+                               Foreground="#AAAAAA"
+                               FontSize="16"/>
+
+
+                    <TextBlock Text="{Binding Username}"
+                               Foreground="White"
+                               FontSize="26"
+                               FontWeight="Bold"
+                               Margin="0,15,0,0"/>
+
+
+                    <TextBlock Text="{Binding SteamId}"
+                               Foreground="#888"/>
+
+
+                    <TextBlock Text="{Binding Status}"
+                               Foreground="#00FF88"
+                               Margin="0,15,0,0"/>
+
+
+
+                    <Button Content="Profil laden"
+                            Height="40"
+                            Margin="0,30,0,0"
+                            Command="{Binding LoadCommand}"/>
+
+
+                </StackPanel>
+
+            </Border>
+
+
+
+
+
+            <!-- RIGHT DASHBOARD -->
+
+            <Grid Grid.Column="1"
+                  Margin="20,0,0,0">
+
+
+                <Grid.RowDefinitions>
+
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="*"/>
+
+                </Grid.RowDefinitions>
+
+
+
+                <!-- STAT CARDS -->
+
+                <WrapPanel>
+
+
+                    <!-- VAC -->
+
+                    <Border Width="220"
+                            Height="120"
+                            Background="#1B2838"
+                            CornerRadius="12"
+                            Margin="10">
+
+                        <StackPanel Padding="15">
+
+                            <TextBlock Text="VAC STATUS"
+                                       Foreground="#AAA"/>
+
+                            <TextBlock Text="{Binding BanStatus}"
+                                       Foreground="{Binding BanColor}"
+                                       FontSize="24"
+                                       FontWeight="Bold"/>
+
+                        </StackPanel>
+
+                    </Border>
+
+
+
+
+                    <!-- PREMIER -->
+
+                    <Border Width="220"
+                            Height="120"
+                            Background="#1B2838"
+                            CornerRadius="12"
+                            Margin="10">
+
+                        <StackPanel Padding="15">
+
+                            <TextBlock Text="PREMIER"
+                                       Foreground="#AAA"/>
+
+                            <TextBlock Text="{Binding PremierRating}"
+                                       Foreground="{Binding PremierColor}"
+                                       FontSize="30"
+                                       FontWeight="Bold"/>
+
+                        </StackPanel>
+
+                    </Border>
+
+
+
+
+
+                    <!-- FACEIT -->
+
+                    <Border Width="220"
+                            Height="120"
+                            Background="#1B2838"
+                            CornerRadius="12"
+                            Margin="10">
+
+                        <StackPanel Padding="15">
+
+                            <TextBlock Text="FACEIT"
+                                       Foreground="#AAA"/>
+
+                            <TextBlock Text="{Binding FaceitLevel}"
+                                       Foreground="#FF8800"
+                                       FontSize="30"
+                                       FontWeight="Bold"/>
+
+                            <TextBlock Text="{Binding FaceitElo}"
+                                       Foreground="White"/>
+
+                        </StackPanel>
+
+                    </Border>
+
+
+
+
+                    <!-- LEETIFY -->
+
+                    <Border Width="220"
+                            Height="120"
+                            Background="#1B2838"
+                            CornerRadius="12"
+                            Margin="10">
+
+                        <StackPanel Padding="15">
+
+                            <TextBlock Text="LEETIFY"
+                                       Foreground="#AAA"/>
+
+                            <TextBlock Text="{Binding LeetifyScore}"
+                                       Foreground="#66FF66"
+                                       FontSize="30"
+                                       FontWeight="Bold"/>
+
+                        </StackPanel>
+
+                    </Border>
+
+
+                </WrapPanel>
+
+
+
+
+
+                <!-- MATCH TABLE -->
+
+                <DataGrid Grid.Row="1"
+                          Margin="10,20,10,0"
+                          ItemsSource="{Binding Matches}"
+                          AutoGenerateColumns="True"
+                          Background="#171D25"
+                          Foreground="White"/>
+
+
+            </Grid>
+
+
+        </Grid>
+
+
+    </Grid>
+
+</Window>
