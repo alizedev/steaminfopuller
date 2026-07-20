@@ -103,7 +103,7 @@ Beispiel:
 ```
 Premier Rating
 
-18500
+22500
 ★★★★★
 ```
 
