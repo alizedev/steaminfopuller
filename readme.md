@@ -1,496 +1,256 @@
-﻿# Steam Info Puller - C#
+﻿# SteamInfoPuller
 
-A C# application that retrieves Steam user information using the **Steam Web API**.
+![License](https://img.shields.io/badge/license-MIT-blue)
+![Platform](https://img.shields.io/badge/platform-Windows-lightgrey)
+![Language](https://img.shields.io/badge/language-C%23-purple)
+![Framework](https://img.shields.io/badge/framework-WPF%20.NET-blue)
 
-The application can collect information such as:
+## Übersicht
 
-- Steam profile data
-- Player name
-- Avatar
-- Online status
-- Owned games
-- Playtime information
+**SteamInfoPuller** ist eine C#-Anwendung zum Abrufen und Anzeigen von Steam-Profilinformationen.
 
-The project is built with **C#**, **.NET**, and the official **Steam Web API**.
+Das Projekt kombiniert einen Steam-Daten-Puller mit einer modernen WPF-Oberfläche im Steam-Stil.
 
----
-
-# Features
-
-## Steam Profile Information
-
-- Retrieve Steam user profile
-- Get Steam ID
-- Display username
-- Get profile avatar
-- Get online status
-
-
-## Game Information
-
-- Retrieve owned games
-- Display game names
-- Display playtime
-- Calculate played hours
-
-
-## API Integration
-
-- Steam Web API integration
-- HTTP requests
-- JSON parsing
-- Async programming
-
+Die Anwendung lädt Steam-Benutzerdaten, Spieleinformationen und stellt diese übersichtlich in einer grafischen Oberfläche dar.
 
 ---
 
-# Technologies
+## Features
 
-| Technology | Usage |
-|---|---|
-| C# | Programming language |
-| .NET 8 | Application framework |
-| Steam Web API | Data source |
-| Newtonsoft.Json | JSON processing |
-| HttpClient | API communication |
-| Rider / Visual Studio | Development environment |
+### Steam Profil
+
+- SteamID64 Unterstützung
+- Benutzername anzeigen
+- Profilbild laden
+- Steam-Profil-Link anzeigen
+- Steam-Level Anzeige
+- Online-Status
+
+### Spielebibliothek
+
+- Alle Spiele eines Profils laden
+- Spielname anzeigen
+- Spielzeit erfassen
+- Sortierung vorbereiten
+- Steam AppID Unterstützung
+
+### Benutzeroberfläche
+
+- Moderne WPF GUI
+- Steam Dark Theme
+- Profilübersicht
+- Spiele-Tabelle
+- MVVM-Struktur
+
+### Geplant
+
+- [ ] Achievements anzeigen
+- [ ] Spielcover laden
+- [ ] Export als JSON
+- [ ] Export als CSV
+- [ ] Mehrere Steam-Profile speichern
+- [ ] Automatische Aktualisierung
+- [ ] Tray-Icon
 
 ---
 
-# Project Structure
+# Projektstruktur
 
 ```
 SteamInfoPuller
-
 │
-├── Program.cs
-│
-├── SteamApiClient.cs
+├── Core
+│   ├── SteamApi.cs
+│   └── SteamInfoPuller.cs
 │
 ├── Models
-│   ├── SteamPlayer.cs
+│   ├── SteamUser.cs
 │   └── SteamGame.cs
 │
-├── appsettings.json
+├── ViewModels
+│   └── MainViewModel.cs
 │
-└── README.md
+├── GUI
+│   ├── MainWindow.xaml
+│   ├── MainWindow.xaml.cs
+│   └── Styles
+│       └── SteamTheme.xaml
+│
+├── App.xaml
+├── App.xaml.cs
+│
+└── changes.xml
 ```
 
 ---
 
-# Requirements
+# Voraussetzungen
 
-Install:
-
-- .NET SDK 8
-- JetBrains Rider or Visual Studio
-- Steam Account
+- Windows 10/11
+- .NET 8 oder höher
+- Visual Studio 2022
 - Steam Web API Key
 
+---
 
-Check .NET installation:
+# Installation
+
+## Repository klonen
 
 ```bash
-dotnet --version
+git clone https://github.com/alizedev/steaminfopuller.git
 ```
 
 ---
 
-# Create Project
+## Abhängigkeiten installieren
 
-Create a new console project:
+Projekt in Visual Studio öffnen und NuGet-Pakete wiederherstellen:
 
-```bash
-dotnet new console -n SteamInfoPuller
 ```
-
-Navigate into the project:
-
-```bash
-cd SteamInfoPuller
-```
-
-Install required package:
-
-```bash
-dotnet add package Newtonsoft.Json
+Build → Restore NuGet Packages
 ```
 
 ---
 
 # Steam API Key
 
-A Steam Web API Key is required.
+Für private Profildaten wird ein Steam API Key benötigt.
 
-Create your API key:
+Erstellen kannst du diesen hier:
 
 ```
 https://steamcommunity.com/dev/apikey
 ```
 
-Store your key:
-
-`appsettings.json`
-
-```json
-{
-  "SteamApiKey": "YOUR_API_KEY"
-}
-```
+Danach den Key in der Anwendung konfigurieren.
 
 ---
 
-# Configuration
+# Verwendung
 
-Example:
+1. Anwendung starten
 
-```json
-{
-  "SteamApiKey": "123456789ABCDE"
-}
+2. SteamID64 eingeben
+
+Beispiel:
+
+```
+76561198000000000
 ```
 
-Never upload your API key publicly.
+3. Auf **Laden** klicken
 
-Recommended:
-
-- Use environment variables
-- Use user secrets
-- Add appsettings.json to .gitignore
+4. Steam-Daten werden geladen und angezeigt
 
 ---
 
-# Steam API Endpoints
+# Architektur
 
-## Player Information
-
-Endpoint:
+Das Projekt ist in mehrere Ebenen getrennt:
 
 ```
-ISteamUser/GetPlayerSummaries
+GUI
+ |
+ v
+ViewModel
+ |
+ v
+SteamInfoPuller
+ |
+ v
+SteamApi
+ |
+ v
+Steam Web API
 ```
 
-Returns:
+## Komponenten
 
-- Steam ID
+### SteamApi.cs
+
+Verantwortlich für:
+
+- HTTP-Anfragen
+- Steam API Kommunikation
+- JSON Verarbeitung
+
+
+### SteamInfoPuller.cs
+
+Verantwortlich für:
+
+- Zusammenführen der Daten
+- Erstellen eines vollständigen SteamProfils
+
+
+### SteamUser.cs
+
+Speichert:
+
+- SteamID
 - Username
 - Avatar
-- Online status
+- Level
+- Spieleliste
 
 
-Example:
+### SteamGame.cs
 
-```
-GET
+Speichert:
 
-https://api.steampowered.com/ISteamUser/GetPlayerSummaries/v2/
-```
-
----
-
-## Owned Games
-
-Endpoint:
-
-```
-IPlayerService/GetOwnedGames
-```
-
-Returns:
-
-- Game list
-- App IDs
-- Playtime
-
-
-Example:
-
-```
-GET
-
-https://api.steampowered.com/IPlayerService/GetOwnedGames/v1/
-```
-
----
-
-# Usage
-
-Start application:
-
-```bash
-dotnet run
-```
-
-Example output:
-
-```
-Name: Gamer123
-
-Avatar:
-https://avatars.steamstatic.com/example.jpg
-
-
-Games:
-
-Counter-Strike 2
-850 Hours
-
-Cyberpunk 2077
-70 Hours
-
-Minecraft
-230 Hours
-```
-
----
-
-# Application Flow
-
-```
-User
-
- |
-
- |
-
-Steam ID
-
- |
-
- |
-
-SteamApiClient
-
- |
-
- |
-
-Steam Web API
-
- |
-
- |
-
-JSON Response
-
- |
-
- |
-
-C# Models
-
- |
-
- |
-
-Console Output
-```
-
----
-
-# Example Code Usage
-
-```csharp
-var steam =
-new SteamApiClient(apiKey);
-
-
-var player =
-await steam.GetPlayer(steamId);
-
-
-Console.WriteLine(
-player.PersonaName);
-```
-
----
-
-# Models
-
-## SteamPlayer
-
-Contains:
-
-```text
-SteamId
-PersonaName
-AvatarFull
-PersonaState
-```
-
----
-
-## SteamGame
-
-Contains:
-
-```text
-AppId
-Name
-PlaytimeForever
-```
-
----
-
-# Development
-
-Open project:
-
-```
-File
- -> Open
- -> SteamInfoPuller
-```
-
-Restore packages:
-
-```bash
-dotnet restore
-```
-
-Build:
-
-```bash
-dotnet build
-```
-
-Run:
-
-```bash
-dotnet run
-```
-
----
-
-# Useful Commands
-
-Build:
-
-```bash
-dotnet build
-```
-
-Clean:
-
-```bash
-dotnet clean
-```
-
-Run tests:
-
-```bash
-dotnet test
-```
-
-Show information:
-
-```bash
-dotnet --info
-```
-
----
-
-# GitHub Setup
-
-Initialize repository:
-
-```bash
-git init
-```
-
-Add files:
-
-```bash
-git add .
-```
-
-Commit:
-
-```bash
-git commit -m "Initial Steam Info Puller"
-```
-
-Add remote:
-
-```bash
-git remote add origin YOUR_REPOSITORY_URL
-```
-
-Push:
-
-```bash
-git push -u origin main
-```
-
----
-
-# Security
-
-Recommended improvements:
-
-- Do not publish API keys
-- Use environment variables
-- Validate Steam IDs
-- Handle API errors
-- Add request limits
-- Store data securely
-
----
-
-# Possible Future Features
-
-## Dashboard
-
-- ASP.NET Core Web Dashboard
-- User login
-- Steam profile pages
-
-
-## Database
-
-- MySQL integration
-- Save player data
-- Save game history
-
-
-## Analytics
-
-- Total playtime charts
-- Most played games
-- Activity statistics
-
-
-## Integrations
-
-- Discord Bot
-- Twitch integration
-- Steam notifications
-
-
-## Advanced Features
-
-- Achievement tracker
-- Friend list viewer
-- Inventory viewer
-- Price calculator
-- Multiple Steam accounts
+- AppID
+- Name
+- Spielzeit
+- weitere Spieldaten
 
 
 ---
 
-# License
+# Technologie
 
-MIT License
-
+| Bereich | Technologie |
+|-|-|
+| Sprache | C# |
+| GUI | WPF |
+| Pattern | MVVM |
+| API | Steam Web API |
+| Datenformat | JSON |
+| Plattform | Windows |
 
 ---
 
-# Author
+# Changelog
 
-Created as a learning project using:
+Siehe:
 
-- C#
-- .NET
-- Steam Web API
-- JSON
-- REST API Development
+```
+changes.xml
+```
+
+Aktuelle Version:
+
+```
+0.1.0
+```
+
+---
+
+# Screenshots
+
+Folgen nach Fertigstellung der GUI.
+
+---
+
+# Lizenz
+
+Dieses Projekt steht unter der MIT Lizenz.
+
+---
+
+# Credits
+
+Steam Daten werden über die offizielle Steam Web API geladen.
+
+Steam ist eine Marke der Valve Corporation.
+```
