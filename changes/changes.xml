@@ -1,0 +1,67 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+
+<changes>
+
+    <version number="0.1.0" date="2026-07-20">
+
+        <title>
+            Erste GUI-Version
+        </title>
+
+        <added>
+            <item>
+                WPF Oberfläche hinzugefügt
+            </item>
+
+            <item>
+                Steam Dark Theme integriert
+            </item>
+
+            <item>
+                SteamUser Datenmodell erstellt
+            </item>
+
+            <item>
+                SteamGame Datenmodell erstellt
+            </item>
+
+            <item>
+                SteamApi Klasse hinzugefügt
+            </item>
+
+            <item>
+                SteamInfoPuller Backend-Controller erstellt
+            </item>
+        </added>
+
+        <changed>
+            <item>
+                Projektstruktur in Core, Models, ViewModels und GUI aufgeteilt
+            </item>
+        </changed>
+
+        <fixed>
+            <item>
+                Vorbereitung für Steam API Datenanzeige
+            </item>
+        </fixed>
+
+    </version>
+
+
+    <version number="0.0.1" date="2026-07-20">
+
+        <title>
+            Projektstart
+        </title>
+
+        <added>
+            <item>
+                Grundprojekt erstellt
+            </item>
+        </added>
+
+    </version>
+
+
+</changes>
