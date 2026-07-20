@@ -2,13 +2,104 @@
 
 <changes>
 
+    <version number="0.2.0" date="2026-07-20">
+
+        <title>
+            CS2 Analyzer Update
+        </title>
+
+
+        <added>
+
+            <item>
+                CS2 Profile Analyzer hinzugefügt
+            </item>
+
+            <item>
+                VAC Ban Prüfung integriert
+            </item>
+
+            <item>
+                Game Ban Erkennung hinzugefügt
+            </item>
+
+            <item>
+                CS2 Spielzeit Analyse hinzugefügt
+            </item>
+
+            <item>
+                FACEIT Profil Integration vorbereitet
+            </item>
+
+            <item>
+                Premier Rating Anzeige hinzugefügt
+            </item>
+
+            <item>
+                Leetify Statistik Anzeige vorbereitet
+            </item>
+
+            <item>
+                Last Match History System hinzugefügt
+            </item>
+
+            <item>
+                K/D Statistik Berechnung hinzugefügt
+            </item>
+
+            <item>
+                CS2 Watchlist System hinzugefügt
+            </item>
+
+        </added>
+
+
+        <changed>
+
+            <item>
+                CS2 Dashboard Oberfläche erweitert
+            </item>
+
+            <item>
+                Steam Profil Ansicht um Sicherheitsdaten erweitert
+            </item>
+
+            <item>
+                Models um CS2 Datenstrukturen erweitert
+            </item>
+
+            <item>
+                Projektstruktur für zusätzliche APIs vorbereitet
+            </item>
+
+        </changed>
+
+
+        <fixed>
+
+            <item>
+                Verbesserte Datenverwaltung zwischen API und GUI
+            </item>
+
+            <item>
+                Fehlerhafte Steam Datenverarbeitung korrigiert
+            </item>
+
+        </fixed>
+
+    </version>
+
+
+
     <version number="0.1.0" date="2026-07-20">
 
         <title>
             Erste GUI-Version
         </title>
 
+
         <added>
+
             <item>
                 WPF Oberfläche hinzugefügt
             </item>
@@ -32,21 +123,29 @@
             <item>
                 SteamInfoPuller Backend-Controller erstellt
             </item>
+
         </added>
 
+
         <changed>
+
             <item>
                 Projektstruktur in Core, Models, ViewModels und GUI aufgeteilt
             </item>
+
         </changed>
 
+
         <fixed>
+
             <item>
                 Vorbereitung für Steam API Datenanzeige
             </item>
+
         </fixed>
 
     </version>
+
 
 
     <version number="0.0.1" date="2026-07-20">
@@ -55,11 +154,15 @@
             Projektstart
         </title>
 
+
         <added>
+
             <item>
                 Grundprojekt erstellt
             </item>
+
         </added>
+
 
     </version>
 
